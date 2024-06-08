@@ -32,9 +32,17 @@ Route::get('/contato', function () {
 });*/
 
 Route::get('/contato', 'ContatoController@contato');
-Route::get('/contato',function(){
-    echo 'Estamos aqui!';
-});
+
+//nome, categoria, assunto, mensagem
+
+Route::get('/contato/{nome}/{categoria_id}',
+    function(
+        string $nome,
+        int $categoria_id = 1 //1 - 'Informação'
+    ){
+        echo 'Estamos aqui:'. $nome. ' - '.$categoria_id;
+    }
+)->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
 
 /* verbo http
 
